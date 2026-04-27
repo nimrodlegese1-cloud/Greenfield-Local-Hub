@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact Us - Greenfield Local Hub</title>
+        <link rel="icon" href="{{ url_for('static', filename='Logo.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="contact-page">
+
+            <!-- Background image -->
+            <div class="shape rect background"></div>
+
+            <!-- Header -->
+            <div class="shape rect header"></div>
+
+            <!-- Footer -->
+            <div class="shape rect footer"></div>
+
+            <!-- Logo Part -->
+            <div class="shape rect logo-part"></div>
+
+            <!-- Logo -->
+            <a href="{{ url_for('homepage') }}">
+                <div class="shape rect logo"></div>
+            </a>
+
+            <!-- Header options -->
+            <div class="top-button">
+                <a href="{{ url_for('products') }}" class="link-buttons">Products</a>
+                <a href="{{ url_for('basket') }}" class="link-buttons">Basket</a>
+
+                <div class="left-buttons">
+                    <a href="{{ url_for('traceability') }}" class="link-buttons traceability-link">
+                        <span class="text">Traceability</span>
+                        <div class="header-icon">
+                            <img src="{{ url_for('static', filename='Traceability.png') }}" class="traceability">
+                        </div>
+                    </a>
+
+                    <a href="{{ url_for('contactus') }}" class="link-buttons contactus-link">
+                        <span class="text-traceibility">Contact Us</span>
+                        <div class="header-icon">
+                            <img src="{{ url_for('static', filename='contactus.png') }}" class="contactus">
+                        </div>
+                    </a>
+
+                    <a href="#" class="link-buttons login-link" onclick="handleAccountClick(event)">
+                        <span class="bottom-text">Account</span>
+                        <span class="text">Sign in/up</span>
+                        <div class="header-icon">
+                            <img src="{{ url_for('static', filename='account.png') }}" class="login">
+                        </div>
+                    </a>
+
+                    <button id="logoutBtn" onclick="logoutUser()" style="display:none;">Logout</button>
+                </div>
+            </div>
+
+            <!-- Contact content -->
+            <div class="contact-box">
+                <div class="contact-title">Contact Us</div>
+
+                <div class="contact-info-box">
+                    <p><strong>Email:</strong> greenfield@localhub.com</p>
+                    <p><strong>Phone:</strong> 0151 123 4567</p>
+                    <p><strong>Address:</strong> Greenfield Local Hub, Liverpool, United Kingdom</p>
+                    <p>
+                        We are here to help with product enquiries, local farm information,
+                        traceability support, and general customer questions.
+                    </p>
+                </div>
+
+            <div class="contact-form-box">
+                <label for="contactName">Your Name</label>
+                <input type="text" id="contactName" placeholder="Enter your name">
+
+                <label for="contactEmail">Your Email</label>
+                <input type="email" id="contactEmail" placeholder="Enter your email">
+
+                <label for="contactUserMessage">Message</label>
+                <textarea id="contactUserMessage" placeholder="Write your message here"></textarea>
+
+                <button class="contact-submit-btn" type="button" onclick="sendContactMessage()">Send Message</button>
+            </div>
+                        <div id="contactMessage" style="display:none;"></div>
+            </div>
+
+
+            <!-- Footer options -->
+            <div class="Bottom-button">
+                <a href="{{ url_for('homepage') }}">
+                    <div class="shape rect bottom-logo-part"></div>
+                    <div class="shape rect bottom-logo"></div>
+                </a>
+
+                <div class="footer-navigations">
+                    <a href="{{ url_for('homepage') }}" class="link-buttons"><span>Home</span></a>
+                    <a href="{{ url_for('contactus') }}" class="link-buttons"><span>About Us</span></a>
+                    <a href="{{ url_for('traceability') }}" class="link-buttons"><span>Book Events</span></a>
+                    <a href="{{ url_for('traceability') }}" class="link-buttons"><span>Search the map</span></a>
+                    <a href="{{ url_for('investors') }}" class="link-buttons"><span>Investors</span></a>
+                </div>
+
+                <div class="middle-bottom-button Follow-us">
+                    <div class="bottom-contact-su"><span>Contact Us</span></div>
+                    <div class="bottom-contact-su email"><span>greenfield@localhub.com</span></div>
+                    <div class="bottom-follow-su"><span>Follow Us</span></div>
+
+                    <div class="social-links">
+                        <a href="https://x.com/" class="link-buttons Twitter-link">
+                            <div class="footer-icon">
+                                <img src="{{ url_for('static', filename='Twitter.png') }}" class="Twitter">
+                            </div>
+                        </a>
+
+                        <a href="https://www.instagram.com/" class="link-buttons instagram-link">
+                            <div class="footer-icon">
+                                <img src="{{ url_for('static', filename='Instagram.png') }}" class="instagram">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="left-bottons-Bottom">
+                    <div class="Legal">Legal</div>
+                    <a href="#" class="link-buttons"><span>Privacy-Policy</span></a>
+                    <a href="#" class="link-buttons"><span>Cookie Policy</span></a>
+                    <a href="#" class="link-buttons"><span>Terms and conditions</span></a>
+                </div>
+            </div>
+
+            <script src="{{ url_for('static', filename='script.js') }}"></script>
+        </div>
+    </body>
+</html>

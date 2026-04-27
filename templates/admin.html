@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Greenfield Local Hub</title>
+    <link rel="icon" href="{{ url_for('static', filename='Logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<tbody id="adminProductsTable">
+<div class="admin-page">
+    <!---------------Main Body Design-------------->
+    <!--Background image -->
+    <div class="shape rect background"></div>
+
+    <!--header -->
+    <div class="shape rect header"></div>
+
+    <!--footer -->
+    <div class="shape rect footer"></div>
+
+    <!--Logo Part -->
+    <div class="shape rect logo-part"></div>
+
+    <!--Logo -->
+    <a href="{{ url_for('homepage') }}">
+        <div class="shape rect logo"></div>
+    </a>
+
+    <!--Header options-->
+    <div class="top-button">
+        <a href="{{ url_for('products') }}" class="link-buttons">Products</a>
+        <a href="{{ url_for('basket') }}" class="link-buttons">Basket</a>
+
+        <div class="left-buttons">
+            <a href="{{ url_for('traceability') }}" class="link-buttons traceability-link">
+                <span class="text">Traceability</span>
+                <div class="header-icon">
+                    <img src="{{ url_for('static', filename='Traceability.png') }}" class="traceability">
+                </div>
+            </a>
+
+            <a href="{{ url_for('contactus') }}" class="link-buttons contactus-link">
+                <span class="text">Contact Us</span>
+                <div class="header-icon">
+                    <img src="{{ url_for('static', filename='contactus.png') }}" class="contactus">
+                </div>
+            </a>
+
+            <a href="#" class="link-buttons login-link" onclick="handleAccountClick(event)">
+                <span class="bottom-text">Account</span>
+                <span class="text">Admin</span>
+                <div class="header-icon">
+                    <img src="{{ url_for('static', filename='account.png') }}" class="login">
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+<div class="admin-dashboard">
+    <div class="admin-title">Admin Dashboard</div>
+
+    <div class="admin-actions">
+        <button class="admin-btn" onclick="viewUsers()">View Users</button>
+        <button class="admin-btn secondary" onclick="openAdminPanel()">View Login Logs</button>
+        <button class="admin-btn" onclick="viewProductsAdmin()">View Products</button>
+        <button class="admin-btn" onclick="logoutUser()">Logout</button>
+    </div>
+
+    <div class="admin-section-title">Add Product</div>
+
+    <div class="admin-actions">
+        <input type="text" id="productName" placeholder="Product Name">
+        <input type="number" step="0.01" id="productPrice" placeholder="Price">
+        <input type="text" id="productImage" placeholder="Image filename">
+        <input type="number" id="productStock" placeholder="Stock">
+        <input type="text" id="productCategory" placeholder="Category">
+        <button class="admin-btn" onclick="addProduct()">Add Product</button>
+    </div>
+
+    <div class="admin-section-title">User Data</div>
+
+    <div class="admin-table-box">
+        <div id="adminContent" class="admin-empty">No data loaded yet.</div>
+    </div>
+
+    <div class="admin-section-title">Admin Product List</div>
+
+    <div class="admin-table-box">
+        <div id="adminProductsContainer" class="admin-empty">Press [View Product]</div>
+    </div>
+</div>
+
+
+ <!--Footer options-->
+        <div class="Bottom-button">
+            <a href="{{ url_for('homepage') }}">
+                <div class="shape rect bottom-logo-part"></div>
+                <div class="shape rect bottom-logo"></div>
+            </a>
+
+            <!------Footer navigational section------>
+            <div class="footer-navigations">
+                <a href="{{ url_for('homepage') }}" class="link-buttons">
+                    <span>Home</span>
+                </a>
+                <a href="{{ url_for('contactus') }}" class="link-buttons">
+                    <span>About Us</span>
+                </a>
+                <a href="{{ url_for('traceability') }}" class="link-buttons">
+                    <span>Book Events</span>
+                </a>
+                <a href="{{ url_for('traceability') }}" class="link-buttons">
+                    <span>Search the map</span>
+                </a>
+                <a href="{{ url_for('investors') }}" class="link-buttons">
+                    <span>Investors</span>
+                </a>
+            </div>
+
+            <!--Follow us and contact links-->
+            <div class="middle-bottom-button Follow-us">
+                <div class="bottom-contact-su ">
+                    <span>Contact Us</span>
+                </div>
+                <div class="bottom-contact-su email">
+                     <a href="{{ url_for('contactus') }}" class="link-buttons">
+                        <span>greenfield@localhub.com</span>
+                    </a>
+                </div>
+                <div class="bottom-follow-su ">
+                    <span>Follow Us</span>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://x.com/" class="link-buttons Twitter-link">
+                        <div class="footer-icon">
+                            <img src="{{ url_for('static', filename='Twitter.png') }}" class="Twitter">
+                        </div>
+                    </a>
+
+                    <a href="https://www.instagram.com/" class="link-buttons instagram-link">
+                        <div class="footer-icon">
+                            <img src="{{ url_for('static', filename='Instagram.png') }}" class="instagram">
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!--Legal clarifications-->
+            <div class="left-bottons-Bottom">
+                <div class="Legal">Legal</div>
+                <a href="https://www.unitedfarmers.co.uk/privacy-policy" class="link-buttons">
+                    <span>Privacy-Policy</span>
+                </a>
+                <a href="https://farmercopleys.co.uk/cookie-policy/" class="link-buttons">
+                    <span>Cookie Policy</span>
+                </a>
+                <a href="https://www.forfarmers.co.uk/terms-conditions" class="link-buttons">
+                    <span>Terms and conditions</span>
+                </a>
+            </div>
+        </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Greenfield Local Hub</title>
+        <link rel="icon" href="{{ url_for('static', filename='Logo.png') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            />
+            <script
+            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+        </script>
+    </head>
+    <body>
+        <div class="traceability-page">
+
+            <!--------------- Main Body Design --------------->
+            <!-- Background image -->
+            <div class="shape rect background"></div>
+
+            <!-- Header -->
+            <div class="shape rect header"></div>
+
+            <!-- Footer -->
+            <div class="shape rect footer"></div>
+
+            <!-- Logo Part -->
+            <div class="shape rect logo-part"></div>
+
+            <!-- Logo -->
+            <a href="{{ url_for('homepage') }}">
+                <div class="shape rect logo"></div>
+            </a>
+
+            <!-- Header options -->
+            <div class="top-button">
+                <a href="{{ url_for('products') }}" class="link-buttons">Products</a>
+                <a href="{{ url_for('basket') }}" class="link-buttons">Basket</a>
+
+                <div class="left-buttons">
+                    <a href="{{ url_for('traceability') }}" class="link-buttons traceability-link">
+                        <span class="text-traceibility">Traceability</span>
+                        <div class="header-icon">
+                            <img src="{{ url_for('static', filename='Traceability.png') }}" class="traceability">
+                        </div>
+                    </a>
+
+                    <a href="{{ url_for('contactus') }}" class="link-buttons contactus-link">
+                        <span class="text">Contact Us</span>
+                        <div class="header-icon">
+                            <img src="{{ url_for('static', filename='contactus.png') }}" class="contactus">
+                        </div>
+                    </a>
+
+                    <a href="#" class="link-buttons login-link" onclick="handleAccountClick(event)">
+                        <span class="bottom-text">Account</span>
+                        <span class="text">Sign in/up</span>
+                        <div class="header-icon">
+                            <img src="{{ url_for('static', filename='account.png') }}" class="login">
+                        </div>
+                    </a>
+
+                    <button id="logoutBtn" onclick="logoutUser()" style="display:none;">Logout</button>
+                </div>
+            </div>
+
+            <!--------------- Traceability Middle Section --------------->
+            
+            <!-- About us top box -->
+            <div class="traceability-about-box">
+                <div class="traceability-about-title">About us</div>
+                <div class="traceability-about-text">
+                    Greenfield Local Hub connects customers with local farms and provides full traceability of food products. Our system allows users to view where products are grown, supporting transparency and trust.
+
+                    By working with local farmers, we promote sustainable agriculture, reduce food miles, and deliver fresh, high-quality produce directly to the community.
+                </div>
+            </div>
+
+            <!-- Main traceability section -->
+            <div class="traceability-main-section">
+
+                <!-- Map section -->
+                <div class="traceability-map-box">
+                    <div class="traceability-map-title">Local Farms Locations</div>
+                    <div id="farmMap" class="traceability-map-canvas"></div>
+                </div>
+
+                <!-- Search / filter section -->
+                <div class="traceability-filter-box">
+
+                    <div class="traceability-filter-top">
+                        <input type="text" class="traceability-search-input" placeholder="Product Search">
+                    </div>
+
+                    <div class="traceability-search-row">
+                        <input type="text" class="traceability-location-input" placeholder="Location">
+                        <button class="traceability-distance-btn">Distance</button>
+                        <button class="traceability-search-btn">
+                            <img src="{{ url_for('static', filename='search.png') }}" alt="Search">
+                        </button>
+                    </div>
+
+                    <div class="traceability-dropdown-row">
+                        <select class="traceability-category-dropdown">
+                            <option value="">▼</option>
+                            <option value="vegetables">Vegetables</option>
+                            <option value="fruit">Fruit</option>
+                            <option value="meat">Meat</option>
+                            <option value="dairy">Dairy</option>
+                            <option value="miscellaneous">Miscellaneous</option>
+                        </select>
+                    </div>
+
+                    <button class="traceability-clear-btn">Clear Search</button>
+
+                    <div class="traceability-results-title">Map Key:</div>
+
+                    <div class="traceability-farm-list">
+                        <div class="traceability-farm-item">
+                            <img src="{{ url_for('static', filename='Yellowmarker.png') }}" alt="Farm 1 Pin" class="traceability-pin">
+                            <span>Croxteth Park Farm</span>
+                        </div>
+                        <div class="traceability-farm-item">
+                            <img src="{{ url_for('static', filename='redmarker.png') }}" alt="Farm 2 Pin" class="traceability-pin">
+                            <span>Rice Lane City Farm</span>
+                        </div>
+                        <div class="traceability-farm-item">
+                            <img src="{{ url_for('static', filename='orangemarker.png') }}" alt="Farm 3 Pin" class="traceability-pin">
+                            <span>Kindling Farm</span>
+                        </div>
+                        <div class="traceability-farm-item">
+                            <img src="{{ url_for('static', filename='greenmarker.png') }}" alt="Farm 4 Pin" class="traceability-pin">
+                            <span>Brooklet Farm</span>
+                        </div>
+                        <div class="traceability-farm-item">
+                            <img src="{{ url_for('static', filename='purplemarker.png') }}" alt="Farm 5 Pin" class="traceability-pin">
+                            <span>Greenslate Community Farm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meet the Farmers Booking Section -->
+            <div class="traceability-farm-cards-box">
+                
+                <div class="traceability-farm-card">
+                    <div class="traceability-farm-card-title">Croxteth Park Farm</div>
+                    <div class="traceability-farm-card-body">
+                        <p>Meet the farmers and learn about local food production.</p>
+                        <button class="book-farm-btn" onclick="bookFarmer('Croxteth Park Farm')">Book Visit</button>
+                    </div>
+                </div>
+
+                <div class="traceability-farm-card">
+                    <div class="traceability-farm-card-title">Rice Lane City Farm</div>
+                    <div class="traceability-farm-card-body">
+                        <p>Visit the farm and explore how products are grown and managed.</p>
+                        <button class="book-farm-btn" onclick="bookFarmer('Rice Lane City Farm')">Book Visit</button>
+                    </div>
+                </div>
+
+                <div class="traceability-farm-card">
+                    <div class="traceability-farm-card-title">Kindling Farm</div>
+                    <div class="traceability-farm-card-body">
+                        <p>Book a session to meet the farmers and understand sustainability practices.</p>
+                        <button class="book-farm-btn" onclick="bookFarmer('Kindling Farm')">Book Visit</button>
+                    </div>
+                </div>
+
+                <div class="traceability-farm-card">
+                    <div class="traceability-farm-card-title">Brooklet Farm</div>
+                    <div class="traceability-farm-card-body">
+                        <p>Meet local farmers and discover where your food comes from.</p>
+                        <button class="book-farm-btn" onclick="bookFarmer('Brooklet Farm')">Book Visit</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Booking Popup -->
+            <div id="bookingPopup" class="booking-popup" style="display:none;">
+                <div class="booking-popup-content">
+                    <h2 id="bookingFarmTitle">Book a Farm Visit</h2>
+
+                    <label for="visitorName">Your Name</label>
+                    <input type="text" id="visitorName" placeholder="Enter your name">
+
+                    <label for="visitorEmail">Email</label>
+                    <input type="email" id="visitorEmail" placeholder="Enter your email">
+
+                    <label for="visitDate">Preferred Date</label>
+                    <input type="date" id="visitDate">
+
+                    <label for="visitMessage">Message</label>
+                    <textarea id="visitMessage" placeholder="Write a short message"></textarea>
+
+                    <div class="booking-popup-buttons">
+                        <button class="confirm-booking-btn" onclick="submitBooking()">Confirm Booking</button>
+                        <button class="close-booking-btn" onclick="closeBookingPopup()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--------------- Footer options --------------->
+            <div class="Bottom-button">
+                <a href="{{ url_for('homepage') }}">
+                    <div class="shape rect bottom-logo-part"></div>
+                    <div class="shape rect bottom-logo"></div>
+                </a>
+
+                <!-- Footer navigational section -->
+                <div class="footer-navigations">
+                    <a href="{{ url_for('homepage') }}" class="link-buttons">
+                        <span>Home</span>
+                    </a>
+                    <a href="{{ url_for('contactus') }}" class="link-buttons">
+                        <span>About Us</span>
+                    </a>
+                    <a href="{{ url_for('traceability') }}" class="link-buttons">
+                        <span>Book Events</span>
+                    </a>
+                    <a href="{{ url_for('traceability') }}" class="link-buttons">
+                        <span>Search the map</span>
+                    </a>
+                    <a href="{{ url_for('investors') }}" class="link-buttons">
+                        <span>Investors</span>
+                    </a>
+                </div>
+
+                <!-- Follow us and contact links -->
+                <div class="middle-bottom-button Follow-us">
+                    <div class="bottom-contact-su">
+                        <span>Contact Us</span>
+                    </div>
+                    <div class="bottom-contact-su email">
+                         <a href="{{ url_for('contactus') }}" class="link-buttons">
+                            <span>greenfield@localhub.com</span>
+                        </a>
+                    </div>
+                    <div class="bottom-follow-su">
+                        <span>Follow Us</span>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://x.com/" class="link-buttons Twitter-link">
+                            <div class="footer-icon">
+                                <img src="{{ url_for('static', filename='Twitter.png') }}" class="Twitter">
+                            </div>
+                        </a>
+
+                        <a href="https://www.instagram.com/" class="link-buttons instagram-link">
+                            <div class="footer-icon">
+                                <img src="{{ url_for('static', filename='Instagram.png') }}" class="instagram">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Legal clarifications -->
+                <div class="left-bottons-Bottom">
+                    <div class="Legal">Legal</div>
+                    <a href="https://www.unitedfarmers.co.uk/privacy-policy" class="link-buttons">
+                        <span>Privacy-Policy</span>
+                    </a>
+                    <a href="https://farmercopleys.co.uk/cookie-policy/" class="link-buttons">
+                        <span>Cookie Policy</span>
+                    </a>
+                    <a href="https://www.forfarmers.co.uk/terms-conditions" class="link-buttons">
+                        <span>Terms and conditions</span>
+                    </a>
+                </div>
+            </div>
+
+            <script src="{{ url_for('static', filename='script.js') }}"></script>
+        </div>
+    </body>
+</html>
